@@ -8,7 +8,7 @@ const Context = (props) => {
   const getproducts = async () => {
     try {
       const { data } = await axios("/products");
-      setProducts(data.products);
+      setProducts(data);
     } catch (error) {
       console.log(error);
     }

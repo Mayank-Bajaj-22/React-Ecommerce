@@ -8,12 +8,9 @@ const Details = () => {
 
   const getsingleproducts = async () => {
     try {
-      const { data } = await axios.get(
-        `/products/${id}`
-        
-      );
+      const { data } = await axios.get(`/products/${id}`);
       console.log("Fetched detail:", data);
-      setProduct(data.product);
+      setProduct(data);
     } catch (error) {
       console.log(error);
     }

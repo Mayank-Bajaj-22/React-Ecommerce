@@ -32,7 +32,10 @@ const Nav = () => {
             to={`/?category=${c}`}
             className="mb-3 flex items-center text-sm text-zinc-700 hover:text-blue-500"
           >
-            <span style={{backgroundColor: color()}} className="rounded-full mr-2 w-[10px] h-[10px]"></span>{" "}
+            <span
+              style={{ backgroundColor: color() }}
+              className="rounded-full mr-2 w-[10px] h-[10px]"
+            ></span>{" "}
             {c}
           </Link>
         ))}
