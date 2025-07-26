@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../utils/Context";
 import { nanoid } from "nanoid";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Create = () => {
   const [products, setproducts] = useContext(ProductContext);
@@ -43,6 +44,7 @@ const Create = () => {
     setproducts(copyData);
     localStorage.setItem("products", JSON.stringify(copyData));
     navigate(-1);
+    toast.success("Product Edited Successfully");
   };
 //   console.log(products);
   return (

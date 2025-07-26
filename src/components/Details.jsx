@@ -35,6 +35,7 @@ const Details = () => {
     setproducts(FilterProducts);
     localStorage.setItem("products", JSON.stringify(FilterProducts));
     navigate("/")
+    toast.success("Product deleted successfully!");
   }
 
   return (
