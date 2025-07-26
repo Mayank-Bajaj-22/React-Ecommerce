@@ -49,7 +49,7 @@ const Details = () => {
         <h3 className="text-zinc-400 my-5">{product.category}</h3>
         <h2 className="text-red-500 mb-5">${product.price}</h2>
         <p className="mb-8">{product.description}</p>
-        <Link className="py-2 mr-5 px-5 border border-blue-300 text-blue-400 rounded">
+        <Link to={`/edit/${product.id}`} className="py-2 mr-5 px-5 border border-blue-300 text-blue-400 rounded">
           Edit
         </Link>
         <button onClick={()=> ProductDeleteHandler(product.id)} className="py-2 px-5 border border-red-300 text-red-400 rounded">
