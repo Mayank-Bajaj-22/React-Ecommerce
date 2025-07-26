@@ -1,27 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "../utils/axios";
+import { ProductContext } from "../utils/Context";
 
 const Details = () => {
+  const navigate = useNavigate(); 
   const { id } = useParams();
+  const [products, setproducts] = useContext(ProductContext);
   const [product, setProduct] = useState(null);
 
-  const getsingleproducts = async () => {
-    try {
-      const { data } = await axios.get(`/products/${id}`);
-      console.log("Fetched detail:", data);
-      setProduct(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getsingleproducts = async () => {
+  //   try {
+  //     const { data } = await axios.get(`/products/${id}`);
+  //     console.log("Fetched detail:", data);
+  //     setProduct(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
-    getsingleproducts();
-  }, [id]);
+    if(!product) {
+      setProduct(products.filter((p) => p.id == id)[0])
+    }
+    // getsingleproducts();
+  }, []);
 
   if (!product) {
     return <div className="text-center mt-20">Loading...</div>;
+  }
+
+  const ProductDeleteHandler = (id) => {
+    const FilterProducts = products.filter(p=> p.id !== id);
+    setproducts(FilterProducts);
+    localStorage.setItem("products", JSON.stringify(FilterProducts));
+    navigate("/")
   }
 
   return (
@@ -39,9 +52,9 @@ const Details = () => {
         <Link className="py-2 mr-5 px-5 border border-blue-300 text-blue-400 rounded">
           Edit
         </Link>
-        <Link className="py-2 px-5 border border-red-300 text-red-400 rounded">
+        <button onClick={()=> ProductDeleteHandler(product.id)} className="py-2 px-5 border border-red-300 text-red-400 rounded">
           Delete
-        </Link>
+        </button>
       </div>
     </div>
   );
